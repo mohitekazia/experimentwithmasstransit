@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Repositories
 {
-    internal sealed class GenericRepository<TEntity> : IGenericRepository<TEntity> where TEntity : class
+    internal  class GenericRepository<TEntity> : IGenericRepository<TEntity> where TEntity : class
     {
         private readonly ExperimentMasstransitContext _experimentMasstransitContext;
         private readonly DbSet<TEntity> _dbSet;

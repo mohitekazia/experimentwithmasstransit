@@ -20,7 +20,9 @@ namespace ExperimentMasstransit
             builder.Configuration.SetBasePath(Directory.GetCurrentDirectory())
                 .AddJsonFile($"appsettings.{builder.Environment}.json", optional: true, reloadOnChange: true);
            
-            builder.Services.AddDbContext<ExperimentMasstransitContext>((s) => { s.UseSqlServer(builder.Configuration.GetConnectionString("MassTransitDBConnection")); });
+            builder.Services.AddDbContext<ExperimentMasstransitContext>((s) => { s.UseSqlServer(builder.Configuration.GetConnectionString("MassTransitDBConnection")); })
+                .AddUnitOfWork<ExperimentMasstransitContext>()
+                .AddCustomRepository;
             
             var app = builder.Build();
             
