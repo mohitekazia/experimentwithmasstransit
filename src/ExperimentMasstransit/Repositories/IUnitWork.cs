@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Repositories
 {
-    internal interface IUnitofWork
+    public interface IUnitofWork
     {
         int Save();
         Task<int> SaveAsync();

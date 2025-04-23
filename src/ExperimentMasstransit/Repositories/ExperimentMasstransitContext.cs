@@ -10,7 +10,7 @@ namespace Repositories
 {
     public class ExperimentMasstransitContext : DbContext
     {
-        public ExperimentMasstransitContext()
+        public ExperimentMasstransitContext(DbContextOptions dbContextOptions):base(dbContextOptions)
         {
         }
       public DbSet<StreamedFiles> StreamedFiles { get; set; }

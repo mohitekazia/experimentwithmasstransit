@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Repositories
 {
-    internal sealed class StreamedFilesGenericRepository:GenericRepository<StreamedFiles>,IGenericRepository<StreamedFiles>
+    public sealed class StreamedFilesGenericRepository:GenericRepository<StreamedFiles>,IGenericRepository<StreamedFiles>
     {
         public StreamedFilesGenericRepository(ExperimentMasstransitContext dbcontext) : base(dbcontext)
         {

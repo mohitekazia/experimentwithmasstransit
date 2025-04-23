@@ -1,4 +1,5 @@
 
+using Entities;
 using Microsoft.EntityFrameworkCore;
 using Repositories;
 using System.Data.Common;
@@ -18,11 +19,12 @@ namespace ExperimentMasstransit
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
             builder.Configuration.SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile($"appsettings.{builder.Environment}.json", optional: true, reloadOnChange: true);
-           
+                .AddJsonFile($"appsettings.{builder.Environment.EnvironmentName}.json", optional: true, reloadOnChange: true);
+
             builder.Services.AddDbContext<ExperimentMasstransitContext>((s) => { s.UseSqlServer(builder.Configuration.GetConnectionString("MassTransitDBConnection")); })
                 .AddUnitOfWork<ExperimentMasstransitContext>()
-                .AddCustomRepository;
+                .AddCustomRepository<StreamedFiles, StreamedFilesGenericRepository>();
+               
             
             var app = builder.Build();
             
