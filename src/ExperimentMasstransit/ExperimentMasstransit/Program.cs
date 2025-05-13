@@ -24,11 +24,12 @@ namespace ExperimentMasstransit
             builder.Services.AddDbContext<ExperimentMasstransitContext>((s) => { s.UseSqlServer(builder.Configuration.GetConnectionString("MassTransitDBConnection")); })
                 .AddUnitOfWork<ExperimentMasstransitContext>()
                 .AddCustomRepository<StreamedFiles, StreamedFilesGenericRepository>();
-               
+
+            builder.Services.AddAWSLambdaHosting(LambdaEventSource.RestApi);
             
             var app = builder.Build();
-            
 
+            ApplyMigration(app);
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {
@@ -45,5 +46,19 @@ namespace ExperimentMasstransit
 
             app.Run();
         }
+    
+        private static void ApplyMigration(WebApplication application)
+        {
+            using (var scp = application.Services.CreateScope())
+            {
+                var dbContext = scp.ServiceProvider.GetService<ExperimentMasstransitContext>();
+                var pendingMigration = dbContext.Database.GetPendingMigrations();
+                if (pendingMigration != null)
+                {
+                    dbContext.Database.Migrate();
+                }
+            }
+        }
+    
     }
 }

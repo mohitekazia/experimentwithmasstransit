@@ -1,0 +1,21 @@
+
+{
+    "region" : "us-east-1",
+    "profile" : "default",
+    "configuration" : "Release",
+    "framework"     : "net8.0",
+    "function-name" : "experimentMassTransit",
+    "function-description" : "",
+    "package-type"         : "Zip",
+    "function-handler"     : "ExperimentMasstransit",
+    "function-memory-size" : 512,
+    "function-role"        : "arn:aws:iam::872672086244:role/service-role/experimentMassTransit",
+    "function-timeout"     : 15,
+    "function-runtime"     : "dotnet8",
+    "function-architecture" : "x86_64",
+    "function-subnets"      : "",
+    "function-security-groups" : "",
+    "tracing-mode"             : "PassThrough",
+    "environment-variables"    : "",
+    "image-tag"                : ""
+}
